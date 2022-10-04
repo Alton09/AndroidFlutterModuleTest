@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Button
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.MaterialTheme
@@ -21,6 +22,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.example.androidfluttermoduletest.ui.theme.AndroidFlutterModuleTestTheme
 import io.flutter.embedding.android.FlutterActivity
 
@@ -35,7 +37,7 @@ class MainActivity : ComponentActivity() {
     }
 
     @Composable
-    private fun MainScreen() {
+    fun MainScreen() {
         // A surface container using the 'background' color from the theme
         var isNativeScreen by remember { mutableStateOf(true) }
         Surface(
@@ -48,7 +50,7 @@ class MainActivity : ComponentActivity() {
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 if (isNativeScreen) {
-                    Greeting("Android")
+                    Text(modifier = Modifier.padding(16.dp), text = "Hello World!")
                     Button(onClick = { isNativeScreen = false }) {
                         Text(text = "Navigate to flutter module")
                     }
@@ -63,17 +65,13 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
-}
 
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    AndroidFlutterModuleTestTheme {
-        Greeting("Android")
+    @Preview(showBackground = true)
+    @Composable
+    fun DefaultPreview() {
+        AndroidFlutterModuleTestTheme {
+            MainScreen()
+        }
     }
 }
+
